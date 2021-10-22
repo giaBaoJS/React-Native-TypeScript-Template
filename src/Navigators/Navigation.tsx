@@ -1,12 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 // BottomTab
 import BottomTab from './BottomTab';
 
-interface NavigationProps {}
-
-const Navigation: React.FC<NavigationProps> = props => {
+const Navigation: React.FC = () => {
   return (
     <NavigationContainer>
       <BottomTab />

@@ -1,16 +1,11 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-
-type UserData = {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-};
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { ApiCall } from '../Services/ApiCall';
+import { UserData } from '../Types/ResponseTypes';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await fetch('https://reqres.in/api/users');
-  return (await response.json()).data;
+  const response = await ApiCall('users', 'GET', { params: { page: 2 } });
+  const data = response?.data as UserData[];
+  return data;
 });
 
 const usersSlice = createSlice({
@@ -18,18 +13,21 @@ const usersSlice = createSlice({
   initialState: {
     users: [] as UserData[],
     loading: true,
+    error: false,
   },
   reducers: {},
-  extraReducers: builder => {
-    builder.addCase(fetchUsers.pending, state => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchUsers.pending, (state) => {
       state.loading = true;
+      state.error = false;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       state.users = action.payload;
       state.loading = false;
     });
-    builder.addCase(fetchUsers.rejected, state => {
+    builder.addCase(fetchUsers.rejected, (state) => {
       state.loading = false;
+      state.error = true;
     });
   },
 });

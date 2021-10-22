@@ -1,15 +1,14 @@
-import React from 'react';
-import {Platform, Dimensions} from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 
 export const kStandarWidth = 414;
 export const kStandarHeight = 896;
-export const kHeight = Dimensions.get('window').height;
-export const kWidth = Dimensions.get('window').width;
+export const kHeightDeivce = Dimensions.get('window').height;
+export const kWidthDice = Dimensions.get('window').width;
 
-export const kWidthRes = (width: number) => {
+export const kWidth = (width: number) => {
   return (width / kStandarWidth) * kStandarWidth;
 };
-export const kHeightRes = (height: number) => {
+export const kHeight = (height: number) => {
   return (height / kStandarHeight) * kStandarHeight;
 };
 

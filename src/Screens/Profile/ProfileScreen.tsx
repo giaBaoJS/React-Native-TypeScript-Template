@@ -1,9 +1,7 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
-interface ProfileScreenProps {}
-
-const ProfileScreen: React.FC<ProfileScreenProps> = props => {
+const ProfileScreen: React.FC = () => {
   return <View></View>;
 };
 

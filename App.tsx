@@ -8,21 +8,16 @@
  * @format
  */
 
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, { useEffect } from 'react';
 import Navigation from './src/Navigators/Navigation';
-import {Provider} from 'react-redux';
-import {store} from './src/Redux/Store';
+import { Provider } from 'react-redux';
+import { store } from './src/Redux/Store';
+import SplashScreen from 'react-native-splash-screen';
 
-const App = () => {
+const App: React.FC = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Provider store={store}>
       <Navigation />
